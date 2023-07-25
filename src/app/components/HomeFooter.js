@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className={styles.footer}>
        <div>
         <Link href="/about"
-          className={styles.aboutButton}>About
+          className={styles.aboutButton}>من نَحْنُ
         </Link>
       </div>
       <div className={styles.content}>

@@ -10,7 +10,7 @@ const Header = () => {
           <h3>Card Title</h3>
           <p>This is a small card with some text.</p>
           <div className={styles.headerbuttonContainer}>
-            <a href="#" className={styles.headerbutton}>لوحة التحكم</a>
+            <Link href="/login" className={styles.headerbutton}>لوحة التحكم</Link>
           </div>
         </div>
       </div>

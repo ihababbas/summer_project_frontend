@@ -20,7 +20,7 @@ const Header = () => {
       {/* Third Column */}
       <div className="flex-1 text-center">
         {/* Add any content you want in the third column */}
-        <h1 className="flex-1 text-center">hi</h1>
+        <h1 className="flex-1 text-center"></h1>
       </div>
        {/* Second Column - Logo (Bigger) */}
        <div className="flex-2 flex items-center justify-center">
