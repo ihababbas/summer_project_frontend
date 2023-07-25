@@ -1,0 +1,87 @@
+.aboutusimage
+{
+  width: 100%;
+   height: 100%;;
+   align-items: center;
+   text-align: center;
+   padding-left: 350px;
+   padding-right: 350px;
+   padding-bottom: 30px;
+   display: block;
+   
+}
+.back
+{
+background-image: url(/assets/back.png);
+height: 100%;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+
+.test {
+    font-size: 1.875rem;
+line-height: 2.25rem; 
+font-weight: 700; 
+text-align: center; 
+text-decoration: underline; 
+}
+.part2 {
+  align-items: center;
+  padding: 37.5px 200px;
+  
+  text-align: center;
+}
+
+
+.wp_caption:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 30%;
+  width: 50%;
+
+}
+
+
+.part1 {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 50px 0 50px 0;
+}
+
+.inner {
+  width: 33%; 
+}
+
+
+
+.p1 {
+  font-size: 18px;
+  text-align: center;
+  color: black;
+}
+
+.fdiv{
+
+    display: inline; 
+justify-self: center; 
+border-width: 2px; 
+border-color: #7F1D1D; 
+}
+
+.fh2 {
+    margin: 0.75rem; 
+font-size: 1.5rem;
+line-height: 2rem; 
+font-style: italic; 
+font-weight: 700; 
+text-align: center; 
+color: #000000; 
+color: #064E3B; 
+}
