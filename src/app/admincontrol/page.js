@@ -42,13 +42,13 @@ const AdminControlPage = () => {
   return (
     <>
     <Header/>
-    <div className="container mx-auto mt-8">
-      <h1 className="text-3xl font-bold mb-4">Admin Control Panel</h1>
+    <div className="container mx-auto mt-8 mt-[150px]">
+      <h1 className="text-3xl font-bold mb-4 ">Admin Control Panel</h1>
       <div className="grid grid-cols-2 gap-4">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Upload</button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Download</button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Clear</button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Add</button>
+        <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg">Upload</button>
+        <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg">Download</button>
+        <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg">Clear</button>
+        <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg">Add</button>
       </div>
 
       {/* View Questions */}

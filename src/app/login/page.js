@@ -50,7 +50,7 @@ export default function login() {
 
       {/* Login Button */}
       <button
-        className="bg-blue-500 text-white py-2 px-4 rounded-lg"
+        className="bg-[#93BFCF] text-white py-2 px-4 rounded-lg"
         onClick={handleLogin}
       >
         Login
