@@ -35,9 +35,9 @@ export default function login() {
     
     <Header/>
 
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center h-screen  text-black">
       {/* Static Image */}
-      <img className="w-32 h-32 mb-6" src="/static-image.png" alt="Static Image" />
+      <img className="w-32 h-32 mb-6" src="./assets/login.png" alt="Static Image" />
 
       {/* Email Input */}
       <input

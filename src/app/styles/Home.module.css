@@ -1,164 +1,150 @@
-.container {
+.Hero {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.Heroheader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #EEE9DA;
+  padding: 20px;
+  text-align: center;
+  text-size-adjust: 30px;
+  height: inherit;
+}
+
+.Heromain {
+  margin-top: 80px; /* Set this value to the height of your fixed header */
+  padding: 20px;
+}
+
+.Heromain p {
+  margin-bottom: 20px;
+}
+
+.Herofooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #EEE9DA;
+  padding: 10px;
+  text-align: center;
+  height: 7%;
+}
+
+/* Media queries for responsiveness */
+
+/* Small screens (e.g., smartphones) */
+@media only screen and (max-width: 600px) {
+  .Heromain {
+    margin-top: 60px;
+  }
+
+  .Heromain p {
+    font-size: 14px;
+  }
+}
+
+/* Medium screens (e.g., tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .Heromain {
+    margin-top: 70px;
+  }
+
+  .Heromain p {
+    font-size: 16px;
+  }
+}
+
+/* Large screens (e.g., desktops) */
+@media only screen and (min-width: 1025px) {
+  .Heromain {
+    margin-top: 80px;
+  }
+
+  .Heromain p {
+    font-size: 18px;
+  }
+}
+
+.Herocontainer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 20px;
+  /* margin: 20px; */
   margin-left: 50px;
   margin-right: 50px;
 }
 
-.card {
+.Herocard {
   flex: 0 0 calc(30% - 10px);
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* margin-top: 30px; */
   margin-bottom: 20px;
 }
 
-.card img {
+.Herocard img {
   width: 100%;
   height: auto;
   border-radius: 4px;
 }
 
-.card h2 {
+.Herocard h2 {
   margin-top: 10px;
   font-size: 18px;
   text-align: center;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .card {
-    flex: 0 0 calc(48% - 20px);
-  }
+/* ... Your existing global styles ... */
+
+/* New styles for the card section */
+.Heromain {
+  padding-top: 60px; /* To push the content below the fixed header */
 }
-.footer {
+
+.Herosection {
+  padding: 20px;
+  max-width: 1000px; /* Adjust this width based on your preference */
+  margin: 0 auto;
+}
+
+.Herocard-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center; /* Vertically center the logo */
-  background-color: #061735;
-  color: #fff;
-  padding: 10px 20px;
 }
 
-.footerlogo {
-  width: 75px;
-  height: 75px;
-  margin-right: 10px; /* Add some space between the logo and the footer content */
+.Herocard {
+  width: calc(33.33% - 20px); /* Adjust the width to fit three cards in a row */
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.Herocard img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.Herocard h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.logo{
+
+  width: 400px;
+  height: 60px;
+  object-fit: scale-down;
   align-items: center;
-}
-.logo {
-  width: 75px;
-  height: 75px;
-  margin-right: 10px; /* Add some space between the logo and the footer content */
-  align-items: center;
-}
-.content {
-  flex: 1;
-  text-align: center;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  background-color: #061735;
-  color: #fff;
-  padding: 10px 20px;
-  text-align: center;
-  align-items: center;
-  
-}
-
-.navbar {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.ul {
-  list-style: none;
-  display: flex;
-  padding: 0;
-}
-
-.li {
-  margin: 0 10px;
-}
-
-.a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.aboutButton {
-  background-color: #AF0000;
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  align-items: center;
-  font-weight: bold;
-  margin-left: 40px;
-}
-
-.aboutButton:hover {
-  background-color: #000000;
-}
-
-.newsTicker {
-  position: absolute;
- 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  white-space: nowrap;
-  overflow: hidden;
-  animation: ticker 10s linear infinite;
-}
-@keyframes ticker {
-  0% { transform: translate(-50%, -50%); }
-  100% { transform: translate(-100%, -50%); }
-}
-
-
-
-
-.headercard {
-  
-  padding: 1rem; 
-  margin-top: 1rem; 
-  border-radius: 0.5rem; 
-  width: 16rem; 
-  color: #000000; 
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); 
-  
-}
-
-.headercard h3 {
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-.headercard p {
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.headerbuttonContainer {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.headerbutton {
-  background-color: #AF0000;
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.headerbutton:hover {
-  background-color: #000000;
 }
