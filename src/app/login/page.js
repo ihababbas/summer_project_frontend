@@ -8,12 +8,12 @@ import Footer from '../components/Footer';
 
 export default function login() {
     const [email, setEmail] = useState('');
-    // const router = useRouter();
+     const router = useRouter();
   
     const handleLogin = () => {
       // Check if the email is admin@admin.com
       if (email === 'admin@admin.com') {
-        // router.push('/admin-control');
+         router.push('/admincontrol');
         console.log("DONE");
       } else {
         // Show a welcome message using SweetAlert and go back to the home page
@@ -23,7 +23,7 @@ export default function login() {
           text: `Welcome to our website, ${email}!`,
           confirmButtonText: 'OK',
         }).then(() => {
-        //   router.push('/');
+          router.push('/');
         console.log("welcome");
         });
       }
