@@ -41,43 +41,49 @@ const AdminControlPage = () => {
 
   return (
     <>
-    <Header/>
-    <div className="container mx-auto mt-8 mt-[150px]">
-      <h1 className="text-3xl font-bold mb-4 ">Admin Control Panel</h1>
-      <div className="grid grid-cols-2 gap-4">
-        <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg">Upload</button>
-        <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg">Download</button>
-        <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg">Clear</button>
-        <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg">Add</button>
-      </div>
 
-      {/* View Questions */}
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Questions List</h2>
-        <ul>
-          {questions.map((question) => (
-            <li key={question.id}>
-              {question.question} - Type: {question.type}
-            </li>
-          ))}
-        </ul>
-      </div>
+<div className="container mx-auto mt-8 mt-[150px] grid grid-cols-5 gap-4">
+  {/* First column (80% width) */}
+  <div className="col-span-4">
+    <h1 className="text-3xl font-bold mb-4">Admin Control Panel</h1>
 
-      {/* Display Types and Counts */}
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Types and Counts</h2>
-        <ul>
-          {Object.entries(typesAndCounts).map(([type, count]) => (
-            <li key={type}>
-              Type: {type} - Count: {count}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Edit and Delete Options */}
-      {/* Add Form (Modal or separate page) */}
+    {/* View Questions */}
+    <div className="bg-white rounded-lg p-4 mb-4">
+      <h2 className="text-xl font-semibold mb-4">Questions List</h2>
+      <ul>
+        {questions.map((question) => (
+          <li key={question.id}>
+            {question.question} - Type: {question.type}
+          </li>
+        ))}
+      </ul>
     </div>
+
+    {/* Display Types and Counts */}
+    <div className="bg-white rounded-lg p-4 mb-4">
+      <h2 className="text-xl font-semibold mb-4">Types and Counts</h2>
+      <ul>
+        {Object.entries(typesAndCounts).map(([type, count]) => (
+          <li key={type}>
+            Type: {type} - Count: {count}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {/* Edit and Delete Options */}
+    {/* Add Form (Modal or separate page) */}
+  </div>
+   
+  {/* Second column (20% width) */}
+  <div className="col-span-1 flex flex-col justify-center items-center">
+    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">Upload</button>
+    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">Download</button>
+    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">Clear</button>
+    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">Add</button>
+  </div>
+</div>
+
     <Footer/>
     </>
 

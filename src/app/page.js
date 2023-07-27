@@ -13,9 +13,9 @@ const Layout = ({ children }) => {
   return (
     <>
     
-     <Header/>
+
      <Middle/>
-      <Footer/>
+     <Footer/>
        
     </>
   );

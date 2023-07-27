@@ -3,17 +3,17 @@
 import React , {useState} from "react"; 
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
-import Header from '../components/Header';
+
 import Footer from '../components/Footer';
 
 export default function login() {
     const [email, setEmail] = useState('');
-     const router = useRouter();
+     //const router = useRouter();
   
     const handleLogin = () => {
       // Check if the email is admin@admin.com
       if (email === 'admin@admin.com') {
-         router.push('/admincontrol');
+         //router.push('/admincontrol');
         console.log("DONE");
       } else {
         // Show a welcome message using SweetAlert and go back to the home page
@@ -23,7 +23,7 @@ export default function login() {
           text: `Welcome to our website, ${email}!`,
           confirmButtonText: 'OK',
         }).then(() => {
-          router.push('/');
+          //router.push('/');
         console.log("welcome");
         });
       }
@@ -33,7 +33,7 @@ export default function login() {
     
     return (<>
     
-    <Header/>
+   
 
     <div className="flex flex-col items-center justify-center h-screen  text-black">
       {/* Static Image */}
@@ -43,7 +43,7 @@ export default function login() {
       <input
         type="email"
         placeholder="Email"
-        className="w-64 p-2 border rounded-lg mb-6"
+        className="w-64 p-2 border-4 rounded-lg mb-6"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -56,9 +56,9 @@ export default function login() {
         Login
       </button>
     </div>
-    <Footer/>
+ 
         
-    
+    <Footer/>
     
     
     </>)

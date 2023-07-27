@@ -3,17 +3,15 @@
 
 import React from "react";
 
-import Header from '../components/Header';
+
 import Footer from '../components/Footer';
 
-import style from '../styles/aboutus.module.css'
-import styles from '../styles/Home.module.css'
+
 
 export default function About() {
     return (
         <>
 
-        <Header/>
 
 <div class="flex flex-wrap justify-center mt-[120px]">
 
