@@ -43,29 +43,46 @@ const AdminControlPage = () => {
     <>
 
 <div className="container mx-auto mt-8 mt-[150px] grid grid-cols-5 gap-4">
+  
+    {/* Second column (20% width) */}
+    <div className="col-span-1 flex flex-col justify-center items-center">
+    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">رفع الاسئلة</button>
+    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">تحميل الاسئلة</button>
+    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">مسح الكل</button>
+    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">إضافة</button>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
   {/* First column (80% width) */}
+  
   <div className="col-span-4">
-    <h1 className="text-3xl font-bold mb-4">Admin Control Panel</h1>
+    <h1 className="text-3xl font-bold mb-4 text-center">لوحة التحكم</h1>
 
     {/* View Questions */}
-    <div className="bg-white rounded-lg p-4 mb-4">
-      <h2 className="text-xl font-semibold mb-4">Questions List</h2>
+    <div className="bg-white rounded-lg p-4 mb-4 text-right">
+      <h2 className="text-xl font-semibold mb-4 ">قائمة الاسئلة</h2>
       <ul>
         {questions.map((question) => (
           <li key={question.id}>
-            {question.question} - Type: {question.type}
+            {question.question} - النوع: {question.type}
           </li>
         ))}
       </ul>
     </div>
 
     {/* Display Types and Counts */}
-    <div className="bg-white rounded-lg p-4 mb-4">
-      <h2 className="text-xl font-semibold mb-4">Types and Counts</h2>
+    <div className="bg-white rounded-lg p-4 mb-4 text-right">
+      <h2 className="text-xl font-semibold mb-4">انواع الاسئلة وعددها</h2>
       <ul>
         {Object.entries(typesAndCounts).map(([type, count]) => (
           <li key={type}>
-            Type: {type} - Count: {count}
+            النوع: {type} - العدد: {count}
           </li>
         ))}
       </ul>
@@ -75,13 +92,7 @@ const AdminControlPage = () => {
     {/* Add Form (Modal or separate page) */}
   </div>
    
-  {/* Second column (20% width) */}
-  <div className="col-span-1 flex flex-col justify-center items-center">
-    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">Upload</button>
-    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">Download</button>
-    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">Clear</button>
-    <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mb-2 block">Add</button>
-  </div>
+
 </div>
 
     <Footer/>

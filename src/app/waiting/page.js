@@ -43,17 +43,17 @@ const WaitingPage = () => {
       <div className="flex justify-center items-center h-screen">
       <table className="border-collapse border border-solid border-[black]">
         <tbody>
-          <tr>
+          <tr className="px-5 py-2.5"> 
             <td colSpan="2" className='border px-5 py-2.5 border-solid border-[black]'>Row 1</td>
           </tr>
-          <tr>
+          <tr className="px-5 py-2.5"> 
             <td colSpan="2" className='border px-5 py-2.5 border-solid border-[black]'>Row 2</td>
           </tr>
-          <tr>
+          <tr className="px-5 py-2.5">
             <td className='border px-5 py-2.5 border-solid border-[black]'>Row 3 - Part 1</td>
             <td className='border px-5 py-2.5 border-solid border-[black]'>Row 3 - Part 2</td>
           </tr>
-          <tr>
+          <tr className="px-5 py-2.5">
             <td className='border px-5 py-2.5 border-solid border-[black]'>Row 4 - Part 1</td>
             <td className='border px-5 py-2.5 border-solid border-[black]'>Row 4 - Part 2</td>
           </tr>
