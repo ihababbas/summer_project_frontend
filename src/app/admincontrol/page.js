@@ -5,9 +5,8 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import cheerio from 'cheerio';
-import styles from '../styles/form.module.css'
 
-
+import Papa from 'papaparse';
 
 const AdminControlPage = () => {
   const [questions, setQuestions] = useState([]);
@@ -25,6 +24,34 @@ const AdminControlPage = () => {
 
 
 
+  
+const handleDownloadQuestions = async () => {
+  try {
+    // Make the API call to download the questions
+    const response = await axios.get('http://127.0.0.1:8000/api/v1/QC/download/');
+    //const response = await axios.get('http://127.0.0.1:8000/api/v1/QC/questions/');
+    const csvData = response.data;
+
+    // Create a Blob from the CSV data
+    const blob = new Blob([csvData], { type: 'text/csv' });
+
+    // Create a download link for the Blob
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'questions.csv';
+
+    // Append the download link to the document, trigger the click event, and remove the link
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    console.log('Downloaded questions successfully.');
+  } catch (error) {
+    console.error('Error downloading questions:', error);
+  }
+};
+  
   
   const handleClearAllQuestions = async () => {
     try {
@@ -166,7 +193,7 @@ const AdminControlPage = () => {
     {/* Second column (20% width) */}
     <div className="col-span-1 flex flex-col justify-center items-center">
     <button className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">رفع الاسئلة</button>
-    <button className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">تحميل الاسئلة</button>
+    <button onClick= {handleDownloadQuestions} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">تحميل الاسئلة</button>
     <button  onClick={handleClearAllQuestions}  className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">مسح الكل</button>
     <button onClick={handleAddQuestion} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">إضافة</button>
     {typesAndCounts && (
@@ -191,16 +218,16 @@ const AdminControlPage = () => {
 
   {/* First column (80% width) */}
   
-  <div className="col-span-4">
+  <div className="col-span-4 pb-[50px]">
     <h1 className="text-3xl font-bold mb-4 text-center">لوحة التحكم</h1>
 
     <div className="bg-white rounded-lg p-4 mb-4 text-right overflow-hidden">
     
     {(editedQuestion !== null || openform ) &&  (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded shadow-lg max-w-lg">
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center  ">
+          <div className="bg-white p-8 rounded shadow-lg max-w-xl">
             <h2 className="text-2xl font-bold mb-4">{editedQuestion ? 'حفظ التعديل' : 'اضافة سؤال'}</h2>
-            <form onSubmit={handleFormSubmit} className="space-y-4">
+            <form onSubmit={handleFormSubmit} className="space-y-4 ">
               <label className="block text-sm font-medium text-gray-700">
                 النوع:
                 <input
@@ -299,7 +326,7 @@ const AdminControlPage = () => {
                 overflowY: 'auto',
               }}
             >
-              <table className="w-full table-fixed">
+              <table className="w-full table-fixed ">
                 <thead>
                   <tr>
                   <th className="px-4 py-2">تعديل او حذف</th>
