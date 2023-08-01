@@ -55,7 +55,7 @@ const Footer = ( )=> {
   return (
     <footer className={styles.Herofooter}>
       {/* Your footer content goes here */}
-      <div class="grid grid-cols-3 gap-4 items-center">
+      <div className="grid grid-cols-3 gap-4 items-center">
       
           <div>
           <Link href={'/'}> <button className='bg-[#93BFCF] text-[black] text-xs py-2  text-center no-underline inline-block text-base ml-[30px] px-8  border-[none];' type="button">الرئيسية</button> </Link>
