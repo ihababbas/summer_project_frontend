@@ -23,6 +23,19 @@ const AdminControlPage = () => {
     wrong3: '',
   });
 
+
+
+  
+  const handleClearAllQuestions = async () => {
+    try {
+      await axios.get('http://127.0.0.1:8000/api/v1/QC/clear/');
+      console.log('All questions cleared successfully.');
+      setQuestions()
+    } catch (error) {
+      console.error('Error clearing all questions:', error);
+    }
+  };
+
   
   const handleAddQuestion = () => {
     setOpenForm(true)
@@ -154,7 +167,7 @@ const AdminControlPage = () => {
     <div className="col-span-1 flex flex-col justify-center items-center">
     <button className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">رفع الاسئلة</button>
     <button className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">تحميل الاسئلة</button>
-    <button className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">مسح الكل</button>
+    <button  onClick={handleClearAllQuestions}  className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">مسح الكل</button>
     <button onClick={handleAddQuestion} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">إضافة</button>
     {typesAndCounts && (
         <div className="bg-white rounded-lg p-4 mb-4 text-right">
@@ -299,7 +312,8 @@ const AdminControlPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {questions.map((question) => (
+                {questions !== null && (
+                  questions.map((question) => (
                     <tr key={question.id}>
                             <td className="border px-4 py-2">
                         <button
@@ -321,7 +335,8 @@ const AdminControlPage = () => {
                       <td className="border px-4 py-2">{question.correct}</td>
                       <td className="border px-4 py-2">{question.questions}</td> 
                     </tr>
-                  ))}
+                  ))
+                )}
                 </tbody>
               </table>
             </div>
