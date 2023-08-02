@@ -5,7 +5,7 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import cheerio from 'cheerio';
-
+import Cookies from 'js-cookie';
 import Papa from 'papaparse';
 
 const AdminControlPage = () => {
@@ -21,8 +21,37 @@ const AdminControlPage = () => {
     wrong2: '',
     wrong3: '',
   });
+  
+  const [file, setFile] = useState(null);
 
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
 
+  const handleFileUpload = async (event) => {
+    const csrfToken = Cookies.get('csrftoken'); // Get the CSRF token from the 'csrftoken' cookie
+  
+    // Check if a file is selected before proceeding
+    if (event.target.files && event.target.files.length > 0) {
+      const formData = new FormData();
+      formData.append('csv_file', event.target.files[0]);
+  
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/v1/QC/question/', formData, {
+          headers: {
+            'X-CSRFToken': csrfToken, // Set the CSRF token in the request headers
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        console.log('File uploaded successfully!');
+        // Handle the response or perform any other actions after successful upload
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        // Handle the error or perform any other actions on failure
+      }
+    }
+  };
+  
 
   
 const handleDownloadQuestions = async () => {
@@ -192,7 +221,18 @@ const handleDownloadQuestions = async () => {
   
     {/* Second column (20% width) */}
     <div className="col-span-1 flex flex-col justify-center items-center">
-    <button className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">رفع الاسئلة</button>
+    <input
+          type="file"
+          onChange={handleFileUpload}
+          className="hidden" // Hide the default file input style
+          id="fileInput" // Assign an ID to the input element
+        />
+        <label
+          htmlFor="fileInput"
+          className="bg-[#93BFCF] text-xs text-white text-center px-4 py-2 rounded-lg mb-2 block w-full cursor-pointer"
+        >
+          رفع الاسئلة
+        </label>
     <button onClick= {handleDownloadQuestions} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">تحميل الاسئلة</button>
     <button  onClick={handleClearAllQuestions}  className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">مسح الكل</button>
     <button onClick={handleAddQuestion} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">إضافة</button>
@@ -214,7 +254,7 @@ const handleDownloadQuestions = async () => {
   
   </div>
     
-  
+  <Footer/> 
 
   {/* First column (80% width) */}
   
@@ -224,7 +264,7 @@ const handleDownloadQuestions = async () => {
     <div className="bg-white rounded-lg p-4 mb-4 text-right overflow-hidden">
     
     {(editedQuestion !== null || openform ) &&  (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center  ">
+    <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center  ">
           <div className="bg-white p-8 rounded shadow-lg max-w-xl">
             <h2 className="text-2xl font-bold mb-4">{editedQuestion ? 'حفظ التعديل' : 'اضافة سؤال'}</h2>
             <form onSubmit={handleFormSubmit} className="space-y-4 ">
@@ -307,8 +347,7 @@ const handleDownloadQuestions = async () => {
                 />
               </label>
               <button
-                // onClick={() => {
-                //   setOpenForm(false);}}
+              
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
@@ -380,7 +419,7 @@ const handleDownloadQuestions = async () => {
 
 
 
-    <Footer/>
+ 
     </>
 
   );

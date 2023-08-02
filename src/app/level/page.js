@@ -1,13 +1,19 @@
 'use client';
-
-
-import Swal from 'sweetalert2';
-
+'use client';
+import React, { useState, useEffect } from "react";
 import Footer from '../components/Footer';
 import Link from 'next/link';
 
 export default function startqustionsgame() {
+  const [playerName, setPlayerName] = useState('');
 
+  useEffect(() => {
+    // Retrieve player name from localStorage
+    const storedPlayerName = localStorage.getItem('playerName');
+    if (storedPlayerName) {
+      setPlayerName(storedPlayerName);
+    }
+  }, []);
   return (
   <>
   {/* Main Content */}
@@ -15,6 +21,7 @@ export default function startqustionsgame() {
 
 
     <h2 className="text-3xl font-semibold mb-4"> لاعب واحد</h2>
+        {playerName && <h3 className="text-xl font-semibold mb-2">مرحبا, {playerName}!</h3>}
 
 
     <div className="flex mt-4">
