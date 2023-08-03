@@ -24,36 +24,51 @@ const AdminControlPage = () => {
   
   const [file, setFile] = useState(null);
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
-  const handleFileUpload = async (event) => {
-    const csrfToken = Cookies.get('csrftoken'); // Get the CSRF token from the 'csrftoken' cookie
+  const handleFileUpload = async () => {
+    if (!file) {
+      alert('Please select a CSV file.');
+      return;
+    }
   
-    // Check if a file is selected before proceeding
-    if (event.target.files && event.target.files.length > 0) {
-      const formData = new FormData();
-      formData.append('csv_file', event.target.files[0]);
+    try {
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const csvData = Papa.parse(event.target.result, { header: true }).data;
+        console.log(csvData);
   
-      try {
-        const response = await axios.post('http://127.0.0.1:8000/api/v1/QC/question/', formData, {
-          headers: {
-            'X-CSRFToken': csrfToken, // Set the CSRF token in the request headers
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        console.log('File uploaded successfully!');
-        // Handle the response or perform any other actions after successful upload
-      } catch (error) {
-        console.error('Error uploading file:', error);
-        // Handle the error or perform any other actions on failure
-      }
+        // Loop through the JSON array and send individual POST requests
+        const responses = await Promise.all(
+          csvData.map(async (item) => {
+            try {
+              const response = await axios.post('http://127.0.0.1:8000/api/v1/QC/questions/', item, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': 'your_csrf_token_here',
+                },
+              });
+              return response.data; // Return the data from the server response
+            } catch (error) {
+              console.error('Error uploading CSV item:', error);
+              return null;
+            }
+          })
+        );
+  
+        console.log(responses); // Array of responses from the server
+        alert('Data added to the database successfully!');
+      };
+      reader.readAsText(file);
+    } catch (error) {
+      console.error('Error uploading CSV:', error);
+      alert('Error uploading CSV. Please check the console for details.');
     }
   };
   
 
-  
 const handleDownloadQuestions = async () => {
   try {
     // Make the API call to download the questions
@@ -221,9 +236,9 @@ const handleDownloadQuestions = async () => {
   
     {/* Second column (20% width) */}
     <div className="col-span-1 flex flex-col justify-center items-center">
-    <input
+    {/* <input
           type="file"
-          onChange={handleFileUpload}
+          onChange={handleUpload}
           className="hidden" // Hide the default file input style
           id="fileInput" // Assign an ID to the input element
         />
@@ -232,7 +247,11 @@ const handleDownloadQuestions = async () => {
           className="bg-[#93BFCF] text-xs text-white text-center px-4 py-2 rounded-lg mb-2 block w-full cursor-pointer"
         >
           رفع الاسئلة
-        </label>
+        </label> */}
+        
+    {/* <button onClick={handleUpload} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">رفع الاسئلة</button>     */}
+    <input type="file" accept=".csv" onChange={handleFileChange} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full"/>
+      <button onClick={handleFileUpload} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">رفع الاسئلة</button>
     <button onClick= {handleDownloadQuestions} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">تحميل الاسئلة</button>
     <button  onClick={handleClearAllQuestions}  className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">مسح الكل</button>
     <button onClick={handleAddQuestion} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">إضافة</button>
