@@ -1,5 +1,5 @@
 'use client';
-'use client';
+
 import React, { useState, useEffect } from "react";
 import Footer from '../components/Footer';
 import Link from 'next/link';
@@ -29,19 +29,19 @@ export default function startqustionsgame() {
         <h2 className="text-3xl font-semibold mb-4">لاعب واحد</h2>
         {playerName && <h3 className="text-xl font-semibold mb-2">مرحبا, {playerName}!</h3>}
         <div className="flex mt-4">
-        <Link href={'/waiting'}><button
+        <Link href={'/questionspage'}><button
             className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mr-4"
             onClick={() => handleDifficultySelect('صعب')}
           >
             صعب
           </button> </Link>
-          <Link href={'/waiting'}>  <button
+          <Link href={'/questionspage'}>  <button
             className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mr-4"
             onClick={() => handleDifficultySelect('متوسط')}
           >
             متوسط
           </button> </Link>
-          <Link href={'/waiting'}> <button
+          <Link href={'/questionspage'}> <button
             className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg"
             onClick={() => handleDifficultySelect('سهل')}
           >
