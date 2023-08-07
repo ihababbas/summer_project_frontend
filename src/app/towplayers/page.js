@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import Link from 'next/link';
 
-export default function oneplayer() {
+const OnePlayer = () => {
   const [playerOne, setPlayerOne] = useState('');
   const [playerTwo, setPlayerTwo] = useState('');
 
@@ -12,11 +12,18 @@ export default function oneplayer() {
     // Save players' names in local storage
     localStorage.setItem('playerOne', playerOne);
     localStorage.setItem('playerTwo', playerTwo);
+
+    // Flip the coin
+    const randomOutcome = Math.random() < 0.5 ? playerOne : playerTwo;
+    localStorage.setItem('coinOutcome', randomOutcome);
+
+    // Redirect to towplayergame page
+    window.location.href = '/towplayergame';
   };
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen  text-black">
+      <div className="flex flex-col items-center justify-center h-screen text-black">
         {/* Static Image */}
         <img className="w-32 h-32 mb-6" src="./assets/VS.png" alt="Static Image" />
 
@@ -39,14 +46,14 @@ export default function oneplayer() {
         />
 
         {/* Start Game Button */}
-        <Link href={"/coin"}>
-          <button className="bg-[#93BFCF] text-black py-2 px-4 rounded-lg" onClick={handleStartGame}>
-            أبدأ اللعبة
-          </button>
-        </Link>
+        <button className="bg-[#93BFCF] text-black py-2 px-4 rounded-lg" onClick={handleStartGame}>
+          أبدأ اللعبة
+        </button>
       </div>
 
       <Footer />
     </>
   );
-}
+};
+
+export default OnePlayer;

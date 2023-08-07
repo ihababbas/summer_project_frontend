@@ -12,34 +12,38 @@ const QuestionsPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
-
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
   const [timer, setTimer] = useState(0);
+  const [initialTimer, setInitialTimer] = useState(0);
 
+  // Check the stored difficulty and apply it to selectedDifficulty state
   useEffect(() => {
-    // Retrieve selected difficulty from localStorage
     const storedSelectedDifficulty = localStorage.getItem('selectedDifficulty');
     if (storedSelectedDifficulty) {
       setSelectedDifficulty(storedSelectedDifficulty);
     }
   }, []);
 
+  const setTimerBasedOnDifficulty = (difficulty) => {
+    switch (difficulty) {
+      case 'سهل':
+        return 90;
+      case 'متوسط':
+        return 60;
+      case 'صعب':
+        return 30;
+      default:
+        return 0;
+    }
+  };
+
   useEffect(() => {
     // Set the timer based on the selected difficulty level
-    switch (selectedDifficulty) {
-      case 'سهل':
-        setTimer(90);
-        break;
-      case 'متوسط':
-        setTimer(60);
-        break;
-      case 'صعب':
-        setTimer(30);
-        break;
-      default:
-        setTimer(0);
-        break;
-    }
+    const timerDuration = setTimerBasedOnDifficulty(selectedDifficulty);
+    setTimer(timerDuration);
+    setInitialTimer(timerDuration);
+    // Fetch new questions from the API and sort the options when selectedDifficulty changes
+    fetchQuestions();
   }, [selectedDifficulty]);
 
   useEffect(() => {
@@ -55,7 +59,9 @@ const QuestionsPage = () => {
     if (timer === 0 && score)  {
       // Add your logic for game over (e.g., show a game over message, redirect to a game over screen, etc.)
       console.log("Game Over!");
+   
       showResult(); 
+   
     }
 
     // Clear the interval when the timer reaches 0
@@ -84,17 +90,23 @@ const QuestionsPage = () => {
 
   const fetchQuestions = async () => {
     try {
+     
       const response = await axios.get('http://127.0.0.1:8000/api/v1/QC/random10/');
       const data = response.data;
-
+   
       // Sort the answer options before setting the questions state
       const sortedQuestions = data.map((question) => ({
         ...question,
         options: question.options.sort((a, b) => a.text.localeCompare(b.text)),
       }));
-
+     
       setQuestions(sortedQuestions);
       setIsLoading(false);
+      const timerDuration = setTimerBasedOnDifficulty(selectedDifficulty);
+      setTimer(timerDuration);
+      setInitialTimer(timerDuration);
+    
+    
     } catch (error) {
       console.error('Error fetching questions:', error);
       setIsLoading(false);
@@ -124,6 +136,7 @@ const QuestionsPage = () => {
       // All questions answered, show the final result
       showResult();
     }
+   
   };
   
 
@@ -160,7 +173,7 @@ const QuestionsPage = () => {
         setCurrentQuestionIndex(0);
         setScore(0);
         setIsAnswered(false);
-        const storedSelectedDifficulty = localStorage.getItem('selectedDifficulty');
+        
         // Fetch new questions from the API and sort the options
         fetchQuestions();
         
@@ -181,9 +194,10 @@ const QuestionsPage = () => {
         ) : (
           // Game state
           <div className="bg-white p-8 rounded-lg shadow-md w-96">
-            <h4 className="text-3xl font-semibold mb-4">Level: {selectedDifficulty}</h4>
-            <h4 className="text-3xl font-semibold mb-4">Timer: {timer} seconds</h4>
-
+            <ul>
+            <li >Level: {selectedDifficulty}</li>
+            <li >Timer: {timer} seconds</li>
+            </ul>
 
             <div className="border border-solid border-black p-4 mb-4">
               {questions[currentQuestionIndex].question}

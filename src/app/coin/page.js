@@ -47,6 +47,7 @@ export default function startqustionsgame() {
             <button
               onClick={handleFlip}
               className="bg-[#93BFCF] text-black py-2 px-4 rounded-lg"
+              
             >
               Flip Coin
             </button>

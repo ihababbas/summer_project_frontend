@@ -236,20 +236,7 @@ const handleDownloadQuestions = async () => {
   
     {/* Second column (20% width) */}
     <div className="col-span-1 flex flex-col justify-center items-center">
-    {/* <input
-          type="file"
-          onChange={handleUpload}
-          className="hidden" // Hide the default file input style
-          id="fileInput" // Assign an ID to the input element
-        />
-        <label
-          htmlFor="fileInput"
-          className="bg-[#93BFCF] text-xs text-white text-center px-4 py-2 rounded-lg mb-2 block w-full cursor-pointer"
-        >
-          رفع الاسئلة
-        </label> */}
-        
-    {/* <button onClick={handleUpload} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">رفع الاسئلة</button>     */}
+
     <input type="file" accept=".csv" onChange={handleFileChange} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full"/>
       <button onClick={handleFileUpload} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">رفع الاسئلة</button>
     <button onClick= {handleDownloadQuestions} className="bg-[#93BFCF] text-xs text-white px-4 py-2 rounded-lg mb-2 block w-full">تحميل الاسئلة</button>
