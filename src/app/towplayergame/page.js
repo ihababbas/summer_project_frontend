@@ -64,6 +64,13 @@ const Random50QuestionsPage = () => {
           setPlayer2Score((prevScore) => prevScore + 10);
           setPlayer1Score((prevScore) => Math.max(0, prevScore - 10));
         }
+      } else {
+        // Player chose the wrong answer, deduct 10 points
+        if (currentPlayer === 1) {
+          setPlayer1Score((prevScore) => Math.max(0, prevScore - 10));
+        } else {
+          setPlayer2Score((prevScore) => Math.max(0, prevScore - 10));
+        }
       }
     }
   };
