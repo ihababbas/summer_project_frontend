@@ -126,9 +126,9 @@ const Random50QuestionsPage = () => {
     if (player1Percentage === 100 && player2Percentage === 100) {
       winner = 'Both players';
     } else if (player1Percentage === 100) {
-      winner = 'Player 1';
+      winner =  localStorage.getItem('playerOne');
     } else if (player2Percentage === 100) {
-      winner = 'Player 2';
+      winner = localStorage.getItem('playerTwo');
     }
 
     Swal.fire({
