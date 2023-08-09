@@ -6,41 +6,81 @@ import styles from '../styles/Board.module.css';
 import Footer from '../components/Footer';
 
 const Board = () => {
-  const values = ['الرَّحْمن','الرَّحِيم', 'المَلِك', 'الْقُدُّوس', 'السَّلَام', 'المُؤْمِن', 'الْمُهَيْمِن', 'الْعَزِيز'];
+  const values = ['الرَّحْمن','الرَّحِيم', 'المَلِك', 'الْقُدُّوس', 'السَّلَام', 'المُؤْمِن', 'الْمُهَيْمِن', 'الْعَزِيز', 'الْمُتَكَبِّر', 'الْجَبَّار'];
   const [cards, setCards] = useState([]);
   const [flippedIndexes, setFlippedIndexes] = useState([]);
-
-
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [timerRunning, setTimerRunning] = useState(true); // Start with timer off
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    // Initialize the cards in pairs
-    const initialCards = values.concat(values).map((value) => ({
+    
+    const timerInterval = setInterval(() => {
+      if (timerRunning) {
+        setTimeElapsed((prevTime) => prevTime + 1);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, [timerRunning]);
+  
+  useEffect(() => {
+    
+    setTimeElapsed(0);
+    setTimerRunning(true); // Start the timer when setting cards
+    const selectedValues = selectRandomValues(values, 8);
+    const duplicatedValues = selectedValues.concat(selectedValues);
+    const initialCards = duplicatedValues.map((value) => ({
       value,
       flipped: false,
+      matched: false,
     }));
-    setCards(shuffleCards(initialCards)); // Shuffle the cards before setting
+    setCards(shuffleArray(initialCards));
+     console.log(timeElapsed)
   }, []);
 
-  // Shuffle cards using the Fisher-Yates (Knuth) algorithm
-  const shuffleCards = (cards) => {
-    for (let i = cards.length - 1; i > 0; i--) {
+  useEffect(() => {
+    
+    const matchedCardCount = cards.filter((card) => card.matched).length;
+    if (matchedCardCount === cards.length) {
+      setTimerRunning(false); // Stop the timer when all cards are matched
+    }
+  }, [cards]);
+
+
+  const selectRandomValues = (arr, count) => {
+    const shuffledArr = shuffleArray(arr);
+    return shuffledArr.slice(0, count);
+  };
+
+  const shuffleArray = (array) => {
+    const shuffled = array.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [cards[i], cards[j]] = [cards[j], cards[i]];
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    return cards;
+    return shuffled;
   };
 
-  const handleCardClick = (index) => {
-    if (flippedIndexes.length < 2) {
-      setFlippedIndexes((prevIndexes) => [...prevIndexes, index]);
-      setCards((prevCards) =>
-        prevCards.map((card, i) =>
-          i === index ? { ...card, flipped: true } : card
-        )
-      );
-    }
-  };
+  console.log(timeElapsed)
 
+const handleCardClick = (index) => {
+  const clickedCard = cards[index];
+
+  // If the clicked card is already matched or there are already 2 flipped cards, return early
+  if (clickedCard.matched || flippedIndexes.length >= 2) {
+    return;
+  }
+
+  setFlippedIndexes((prevIndexes) => [...prevIndexes, index]);
+  setCards((prevCards) =>
+    prevCards.map((card, i) =>
+      i === index ? { ...card, flipped: true } : card
+    )
+  );
+};
   useEffect(() => {
     if (flippedIndexes.length === 2) {
       const [index1, index2] = flippedIndexes;
@@ -59,23 +99,56 @@ const Board = () => {
         }, 1000);
       }
     }
-  }, [flippedIndexes]);
+  
+  const allCardsFlippedBack = cards.every((card) => card.flipped);
+  if (allCardsFlippedBack) {
+    setGameOver(true); // Set game over state to true
+    setTimerRunning(false); // Stop the timer
+  } else {
+    setGameOver(false); // Reset game over state to false
+  }
+}, [flippedIndexes, cards]);
 
-  return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white pt-10">
+const playAgainFunction = () => {
+  // Reset all cards to their initial state
+  const initialCards = cards.map((card) => ({ ...card, flipped: false, matched: false }));
+  setCards(shuffleArray(initialCards));
+  
+  // Reset other game states
+  setFlippedIndexes([]);
+  setTimeElapsed(0);
+  setTimerRunning(true);
+  setGameOver(false);
+};
+
+
+return (
+  <div className="flex flex-col items-center justify-center h-screen bg-white pt-10">
+    <div className={`${styles.timer} ${styles.middleLeft}`}>{timeElapsed} seconds</div>
     <div className={styles.board}>
       {cards.map((card, index) => (
         <Card
           key={index}
           value={card.value}
           flipped={card.flipped}
+          matched={card.matched}
           onClick={() => handleCardClick(index)}
         />
       ))}
     </div>
-    <Footer/>
-    </div>
-  );
+    <Footer />
+    {gameOver && (
+      <div className={styles.popup}>
+        <h2>Game Over!</h2>
+        <p>Congratulations, you've matched all the cards!</p>
+        <button className={styles.popupButton} onClick={playAgainFunction}>
+          Play Again
+        </button>
+      </div>
+    )}
+  </div>
+);
+
 };
 
 export default Board;

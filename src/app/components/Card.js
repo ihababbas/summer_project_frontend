@@ -1,21 +1,19 @@
 // components/Card.js
 "use client";
-import {React,useState} from 'react';
-import styles from '../styles/Card.module.css';
+import React from 'react';
+import cardStyles from '../styles/Card.module.css';
 
-const Card = ({ value, flipped, onClick }) => {
- 
+const Card = ({ value, flipped, matched, onClick }) => {
   return (
     <div
-      className={`${styles.card} ${flipped ? styles.flipped : ''} `}
+      className={`${cardStyles.card} ${flipped ? cardStyles.flipped : ''} ${matched ? cardStyles.matched : ''}`}
       onClick={onClick}
     >
-      <div className={styles.inner}>
-        <div className={styles.face}>
-        {flipped ? ' ' : <img src="./assets/allah.png" alt="الله" />}
+      <div className={cardStyles.inner}>
+        <div className={cardStyles.face}>
+          {flipped ? value : <img src="./assets/allah.png" alt="الله" />}
         </div>
-        <div className={`${styles.face} ${styles.back}`}>
-          {/* You can include a mirrored version of the front face content here */}
+        <div className={`${cardStyles.face} ${cardStyles.back}`}>
           {flipped ? value : ' '}
         </div>
       </div>

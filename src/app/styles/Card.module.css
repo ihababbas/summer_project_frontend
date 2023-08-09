@@ -48,3 +48,6 @@
     transform: rotateY(180deg);
   }
   
+  .matched {
+    border: 2px solid gold;
+  }
