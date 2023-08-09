@@ -1,0 +1,20 @@
+/* styles/Board.module.css */
+
+  .board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    margin: auto;
+    padding-top: 10px;
+  }
+  
+
+
+  @media screen and (max-width: 600px) {
+    .board {
+      max-width: 300px; /* Adjust the max-width for smaller screens */
+    }
+  }
+  

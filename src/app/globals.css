@@ -3,6 +3,8 @@
 @tailwind utilities;
 @tailwind variants;
 
+@import url('https://fonts.googleapis.com/css2?family=Gulzar&display=swap');
+
 
 @keyframes spin {
     to {
