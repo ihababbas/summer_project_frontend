@@ -2,10 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import cheerio from 'cheerio';
-import Cookies from 'js-cookie';
 import Papa from 'papaparse';
 
 const AdminControlPage = () => {
@@ -125,12 +123,6 @@ const handleDownloadQuestions = async () => {
     }
   };
 
-
-
-  
-  
-  
-  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     if (editedQuestion) {
@@ -197,10 +189,6 @@ const handleDownloadQuestions = async () => {
    
     fetchData();
   }, [setQuestions]);
-
-
-
-
 
   useEffect(() => {      
      async function fetchTypesAndCounts() {
@@ -422,7 +410,6 @@ const handleDownloadQuestions = async () => {
 
 
 </div>
-
 
 
  

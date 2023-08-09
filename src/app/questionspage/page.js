@@ -27,11 +27,11 @@ const QuestionsPage = () => {
   const setTimerBasedOnDifficulty = (difficulty) => {
     switch (difficulty) {
       case 'سهل':
-        return 90;
+        return 150;
       case 'متوسط':
-        return 60;
+        return 100;
       case 'صعب':
-        return 30;
+        return 50;
       default:
         return 0;
     }

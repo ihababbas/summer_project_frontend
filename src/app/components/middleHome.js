@@ -12,8 +12,8 @@ const Home = () => {
       <h2>تحدي الاسئلة</h2> </Link>
     </div>
     <div className={styles.Herocard}>
-      <img src="./assets/quran.png" alt="Image 2" />
-      <h2>ترتيب السور</h2>
+    <Link href={'/startgametow'}><img src="./assets/quran.png" alt="Image 2" />
+      <h2>ترتيب السور</h2> </Link>
     </div>
     <div className={styles.Herocard}>
       <img src="./assets/asmaa.png" alt="Image 3" />
