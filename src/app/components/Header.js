@@ -8,6 +8,11 @@ const Header = () => {
   const [tickerText, setTickerText] = useState('');
   const [gregorianDate, setGregorianDate] = useState('');
   const [hijriDate, setHijriDate] = useState('');
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
   useEffect(() => {
     // انضم جميع الآيات متتالية في سلسلة واحدة لعرضها في التيكر
     const concatenatedAyat = ayat.join('  |  ');
@@ -33,7 +38,7 @@ const Header = () => {
     // Get the current Gregorian date
     const currentDate = new Date();
     const currentGregorianDate = currentDate.toDateString();
-    
+    const arabic = currentDate.toLocaleDateString('ar', options)
     // Get the current date in the format MM-DD-YYYY
     const formattedCurrentDate = currentDate.toISOString().slice(5, 10) + '-' + currentDate.getFullYear();
 
@@ -43,7 +48,7 @@ const Header = () => {
       .then(data => {
         if (data.data && data.data.hijri) {
           setHijriDate(data.data.hijri.date);
-          setGregorianDate(currentGregorianDate);
+          setGregorianDate(arabic);
         }
       })
       .catch(error => {
