@@ -18,7 +18,7 @@ export default function About() {
   <div class="max-w-sm mx-4 my-8 bg-white shadow-md rounded-lg overflow-hidden">
     <div class="bg-[#93BFCF] h-32 w-32 mx-auto rounded-full mt-4 flex items-center justify-center">
      
-      <img src="./assets/quran.png" alt="Card Image" class="rounded-full w-24 h-24"/>
+      <img src="./assets/envelope.png" alt="Card Image" class="rounded-full w-24 h-24"/>
  
     </div>
     <div class="text-center px-6 py-4">
@@ -29,7 +29,7 @@ export default function About() {
   <div class="max-w-sm mx-4 my-8 bg-white shadow-md rounded-lg overflow-hidden">
     <div class="bg-[#93BFCF] h-32 w-32 mx-auto rounded-full mt-4 flex items-center justify-center">
      
-      <img src="./assets/quran.png" alt="Card Image" class="rounded-full w-24 h-24"/>
+      <img src="./assets/values.jpg" alt="Card Image" class="rounded-full w-24 h-24"/>
  
     </div>
     <div class="text-center px-6 py-4">
@@ -40,7 +40,7 @@ export default function About() {
   <div class="max-w-sm mx-4 my-8 bg-white shadow-md rounded-lg overflow-hidden">
     <div class="bg-[#93BFCF] h-32 w-32 mx-auto rounded-full mt-4 flex items-center justify-center">
      
-      <img src="./assets/quran.png" alt="Card Image" class="rounded-full w-24 h-24"/>
+      <img src="./assets/about.jpg" alt="Card Image" class="rounded-full w-24 h-24"/>
  
     </div>
     <div class="text-center px-6 py-4">

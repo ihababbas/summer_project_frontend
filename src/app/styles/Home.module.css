@@ -160,7 +160,7 @@
   overflow: hidden;
   direction: rtl; /* Set the direction to right-to-left for Arabic script */
   text-align: right;
-  padding: 8px;
+  padding: 12px;
 }
 
 .tickertext {
