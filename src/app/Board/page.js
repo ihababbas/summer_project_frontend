@@ -10,11 +10,12 @@ const Board = () => {
   const [cards, setCards] = useState([]);
   const [flippedIndexes, setFlippedIndexes] = useState([]);
   const [timeElapsed, setTimeElapsed] = useState(0);
-  const [timerRunning, setTimerRunning] = useState(true); // Start with timer off
+  const [timerRunning, setTimerRunning] = useState(false); // Start with timer off
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    
+    setTimeElapsed(0);
+    setTimerRunning(true); 
     const timerInterval = setInterval(() => {
       if (timerRunning) {
         setTimeElapsed((prevTime) => prevTime + 1);
@@ -28,8 +29,7 @@ const Board = () => {
   
   useEffect(() => {
     
-    setTimeElapsed(0);
-    setTimerRunning(true); // Start the timer when setting cards
+    
     const selectedValues = selectRandomValues(values, 8);
     const duplicatedValues = selectedValues.concat(selectedValues);
     const initialCards = duplicatedValues.map((value) => ({
@@ -37,6 +37,8 @@ const Board = () => {
       flipped: false,
       matched: false,
     }));
+    setTimeElapsed(0);
+    setTimerRunning(true); // Start the timer when setting cards
     setCards(shuffleArray(initialCards));
      console.log(timeElapsed)
   }, []);
@@ -139,10 +141,10 @@ return (
     <Footer />
     {gameOver && (
       <div className={styles.popup}>
-        <h2>Game Over!</h2>
-        <p>Congratulations, you've matched all the cards!</p>
+        <h2>انتهت اللعبة</h2>
+        <p>مبارك ، لقت اتممت اللعبة</p>
         <button className={styles.popupButton} onClick={playAgainFunction}>
-          Play Again
+          اعادة اللعب
         </button>
       </div>
     )}
