@@ -40,25 +40,30 @@ const Header = () => {
     const currentGregorianDate = currentDate.toDateString();
     const arabic = currentDate.toLocaleDateString('ar', options)
     // Get the current date in the format MM-DD-YYYY
-    const formattedCurrentDate = currentDate.toISOString().slice(5, 10) + '-' + currentDate.getFullYear();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const year = currentDate.getFullYear();
 
+    const formattedCurrentDate = `${day}-${month}-${year}`;
+  
     // Fetch the Hijri date using the API
     fetch(`http://api.aladhan.com/v1/gToH/${formattedCurrentDate}`)
       .then(response => response.json())
       .then(data => {
         if (data.data && data.data.hijri) {
           setHijriDate(data.data.hijri.date);
+            
           setGregorianDate(arabic);
         }
       })
+    
       .catch(error => {
         console.error('Error fetching Hijri date:', error);
       });
   }, []);
   
   
-  
-  
+
   return (
     <header className='fixed w-full bg-[#EEE9DA] text-center item-bold p-8 left-0 top-0'>
     {/* Your header content goes here */}
