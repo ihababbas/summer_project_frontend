@@ -163,7 +163,7 @@ const handleDownloadQuestions = async () => {
   const handleDeleteQuestion = async (questionId) => {
     try {
       // Send a DELETE request to your API endpoint with the given questionId
-      await axios.delete(`http://127.0.0.1:8000/api/v1/QC/question/${questionId}`);
+      await axios.delete(`http://127.0.0.1:8000/api/v1/QC/question/${questionId}/`);
       console.log(`Deleted question with ID: ${questionId}`);
 
       // Update the state to remove the deleted question from the list
