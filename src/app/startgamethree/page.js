@@ -1,8 +1,5 @@
 'use client';
 
-
-import Swal from 'sweetalert2';
-
 import Footer from '../components/Footer';
 import Link from 'next/link';
 

@@ -65,6 +65,13 @@ const DragAndDropGame = () => {
         text: `Your mark: ${playerScore}/${selectedNumber}`,
         icon: 'success',
       });
+  
+    const shuffledSurahs = shuffleArray(Surah).slice(0, selectedNumber);
+    setSurahNames(shuffledSurahs);
+
+    // Reset other relevant state variables (timer, displayNumbers, etc.)
+    setTimer(0);
+    setDisplayNumbers(false);
     } else {
       // Handle the case when the order is incorrect
       Swal.fire({
