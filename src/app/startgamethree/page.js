@@ -16,12 +16,14 @@ export default function startqustionsgame() {
     {/* Paragraph */}
   
     <h4 className="text-2xl mb-4">  
-فكرة هذا التحدي هي عبارة عن ايجاد الاسماء المشتابه عن طريق الضغط على الكرت واختبار قوة الذاكرة في بطاقات موزعة 4 في 4
+فكرة هذا التحدي هي عبارة عن ايجاد الاسماء المشتابه 
+عن طريق الضغط على الكرت واختبار قوة الذاكرة في بطاقات موزعة 4 في 4
 </h4>
     {/* Buttons */}
     <div className="flex mt-4">
   
-    <Link href={'/Board'}> <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mr-4">الى تحدي  </button> </Link>
+    <Link href={'/Board'}> <button className="bg-[#93BFCF] text-white px-4 py-2 rounded-lg mr-4">الى تحدي 
+     </button> </Link>
    
     </div>
     </div>

@@ -158,6 +158,7 @@ const Random50QuestionsPage = () => {
           // Loading state
           <div className="text-center">
             <div className="animate-spin text-3xl mb-4">&#128259;</div>
+
             <p>Loading...</p>
           </div>
         ) : isGameFinished ? (
@@ -193,6 +194,7 @@ const Random50QuestionsPage = () => {
           </div>
         ) : (
           // Game state with questions
+          
           <div className="flex justify-center items-center space-x-4 mt-[100px] w-full h-full">
           {/* Player Information Card */}
           <div className={`bg-blue-200 p-6 rounded-lg flex flex-col items-center ${
@@ -220,6 +222,12 @@ const Random50QuestionsPage = () => {
   
           {/* Question Card */}
           <div className="bg-white p-6 rounded-lg">
+          <div className="text-center text-xl mb-4">
+          {currentPlayer === 1
+            ? localStorage.getItem('playerOne')
+            : localStorage.getItem('playerTwo')}{' '}
+          يلعب الآن
+        </div>
             <div className="border border-solid border-black p-4 mb-4">
               {questions[currentQuestionIndex].question}
             </div>
